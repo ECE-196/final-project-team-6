@@ -13,3 +13,17 @@ N/A
 
 ### Removed
 N/A
+
+
+## 5/20/24
+### Contributors
+Aidan Garamendi, Garno Amirian, Bao Thy Nguyen
+
+### Added
+testing files added to main github for progress on codebase
+
+### Changed
+N/A
+
+### Removed
+N/A
