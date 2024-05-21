@@ -20,7 +20,7 @@ N/A
 Aidan Garamendi, Garno Amirian, Bao Thy Nguyen
 
 ### Added
-testing files added to main github for progress on codebase
+testing files added to main github for progress on codebase and updated website readme
 
 ### Changed
 N/A
