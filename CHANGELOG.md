@@ -27,3 +27,16 @@ N/A
 
 ### Removed
 N/A
+
+## 5/20/24
+### Contributors
+Aidan Garamendi, Garno Amirian, Bao Thy Nguyen
+
+### Added
+Added updated poster and video script 
+
+### Changed
+N/A
+
+### Removed
+N/A
