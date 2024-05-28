@@ -4,7 +4,10 @@
 #include "Debug.h"
 #include "ImageData.h"
 
+int i;
+
 void setup() {
+  i = 0;
   System_Init();                                                                                                                                                                                                                                                                                   
   Serial.print(F("OLED_Init()...\r\n"));
   OLED_2IN42_Init();
@@ -39,6 +42,7 @@ void setup() {
 }
 
 void loop() {
+
   //0.Create a new image cache
   UBYTE *BlackImage;
   UWORD Imagesize = ((OLED_2IN42_WIDTH%8==0)? (OLED_2IN42_WIDTH/8): (OLED_2IN42_WIDTH/8+1)) * OLED_2IN42_HEIGHT;
@@ -49,34 +53,41 @@ void loop() {
   Serial.print("Paint_NewImage\r\n");
   Paint_NewImage(BlackImage, OLED_2IN42_WIDTH, OLED_2IN42_HEIGHT, 270, BLACK);  
 
+
   //1.Select Image
   Paint_SelectImage(BlackImage);
   Paint_Clear(BLACK);
 
-  String command = "test line 0";
+  //declare strings
+  String command = "command";
+  String lineOne = "          ";
+  String lineTwo = "          ";
+  String lineThree = "         ";
+  String lineFour = "         ";
 
-  //recieve string to print
+  while (i<15){
+    command = i; //receive command input
+    Paint_Clear(BLACK); 
 
-  command = "test line 1";   
-  Paint_DrawString_EN(10, 0, command.c_str(), &Font12, WHITE, WHITE);
-  OLED_2IN42_Display(BlackImage);
-  Driver_Delay_ms(2000);
+    Paint_DrawString_EN(10, 0, lineOne.c_str(), &Font12, WHITE, WHITE);
 
-  command = "test line 2";
-  Paint_DrawString_EN(10, 15, command.c_str(), &Font12, WHITE, WHITE);
-  OLED_2IN42_Display(BlackImage);
-  Driver_Delay_ms(2000);
+    Paint_DrawString_EN(10, 15, lineTwo.c_str(), &Font12, WHITE, WHITE);
 
-  command = "test line 3";
-  Paint_DrawString_EN(10, 30, command.c_str(), &Font12, WHITE, WHITE);
-  OLED_2IN42_Display(BlackImage);
-  Driver_Delay_ms(2000);
-  
-  command = "test line 4";
-  Paint_DrawString_EN(10, 45, command.c_str(), &Font12, WHITE, WHITE);
-  OLED_2IN42_Display(BlackImage);
-  Driver_Delay_ms(2000);
+    Paint_DrawString_EN(10, 30, lineThree.c_str(), &Font12, WHITE, WHITE);
+    
+    Paint_DrawString_EN(10, 45, lineFour.c_str(), &Font12, WHITE, WHITE);
 
+    OLED_2IN42_Display(BlackImage);
+    Driver_Delay_ms(2000);
+
+    //shift all valus down
+    lineFour = lineThree;
+    lineThree = lineTwo;
+    lineTwo = lineOne;
+    lineOne = command;
+
+    i = i+1;
+  }
   // Show image on page
   //OLED_2IN42_Display(BlackImage);
   //Driver_Delay_ms(5000);  

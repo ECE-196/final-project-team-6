@@ -40,3 +40,17 @@ N/A
 
 ### Removed
 N/A
+
+
+## 5/28/24
+### Contributors
+Aidan Garamendi
+
+### Added
+added code to opperate the OLED in closed captioning format
+
+### Changed
+N/A
+
+### Removed
+N/A
