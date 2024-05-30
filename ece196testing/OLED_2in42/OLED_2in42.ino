@@ -30,10 +30,10 @@ void setup() {
   
   // Drawing on the image
   Serial.print("Drawing:page 2\r\n");     
-  Paint_DrawString_EN(10, 0, "Initial bootup", &Font12, WHITE, WHITE);
-  Paint_DrawString_EN(10, 17, "Testing line 2", &Font8, WHITE, WHITE);
-  Paint_DrawNum(10, 30, "bootup test", &Font8, 4, WHITE, WHITE);
-  Paint_DrawNum(10, 43, "bootup test", &Font12, 4, WHITE, WHITE);
+  Paint_DrawString_EN(10, 0, "Team 6 Project", &Font12, WHITE, WHITE);
+  Paint_DrawString_EN(10, 17, "Sign Language CC", &Font8, WHITE, WHITE);
+  Paint_DrawString_EN(10, 30, "Initial Bootup", &Font8, WHITE, WHITE);
+  Paint_DrawNum(10, 43, "5292024", &Font12, 4, WHITE, WHITE);
   // Show image on page2
   OLED_2IN42_Display(BlackImage);
   Driver_Delay_ms(5000);  
@@ -59,14 +59,17 @@ void loop() {
   Paint_Clear(BLACK);
 
   //declare strings
-  String command = "command";
-  String lineOne = "          ";
-  String lineTwo = "          ";
-  String lineThree = "         ";
-  String lineFour = "         ";
+  char comms[18] = {'a', 'r', 'd', 'u', 'i', 'n', 'o', ' ', 't', 'e', 's', 't', ' ', 't', 'r', 'y', '2', 'Z'};
+  String command = " ";
+  String lineOne = " ";
+  String lineTwo = " ";
+  String lineThree = " ";
+  String lineFour = " ";
 
-  while (i<15){
-    command = i; //receive command input
+  while (command != "Z"){
+    //receive command
+    command = comms[i]; //receive command input
+
     Paint_Clear(BLACK); 
 
     Paint_DrawString_EN(10, 0, lineOne.c_str(), &Font12, WHITE, WHITE);
@@ -78,13 +81,19 @@ void loop() {
     Paint_DrawString_EN(10, 45, lineFour.c_str(), &Font12, WHITE, WHITE);
 
     OLED_2IN42_Display(BlackImage);
-    Driver_Delay_ms(2000);
+    Driver_Delay_ms(1000);
 
     //shift all valus down
-    lineFour = lineThree;
-    lineThree = lineTwo;
-    lineTwo = lineOne;
-    lineOne = command;
+    if (command == " "){
+      lineFour = lineThree;
+      lineThree = lineTwo;
+      lineTwo = lineOne;
+      lineOne = command;
+    } 
+    else {      
+      lineOne = lineOne + command;
+    }
+    
 
     i = i+1;
   }
