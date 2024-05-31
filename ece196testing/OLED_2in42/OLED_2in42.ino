@@ -90,7 +90,7 @@ void loop() {
       lineTwo = lineOne;
       lineOne = command;
     } 
-    else {      
+    else if (command != ""){      
       lineOne = lineOne + command;
     }
     
