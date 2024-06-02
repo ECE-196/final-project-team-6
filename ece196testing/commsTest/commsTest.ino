@@ -9,9 +9,7 @@ int action = 0;
 
 void setup() {
   setupCommunication();
-  setupDisplay();
   sending = false;
-  writeDisplay("testing...", 0, true);
 }
 
 void loop() {

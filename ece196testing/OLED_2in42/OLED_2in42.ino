@@ -5,14 +5,18 @@
 #include "ImageData.h"
 
 int i;
+bool sending;
+
 
 void setup() {
   i = 0;
+
   System_Init();                                                                                                                                                                                                                                                                                   
   Serial.print(F("OLED_Init()...\r\n"));
   OLED_2IN42_Init();
   Driver_Delay_ms(500); 
   OLED_2IN42_Clear(); 
+  setupCommunication();
 
   //0.Create a new image cache
   UBYTE *BlackImage;
@@ -61,14 +65,25 @@ void loop() {
   //declare strings
   char comms[18] = {'a', 'r', 'd', 'u', 'i', 'n', 'o', ' ', 't', 'e', 's', 't', ' ', 't', 'r', 'y', '2', 'Z'};
   String command = " ";
-  String lineOne = " ";
-  String lineTwo = " ";
-  String lineThree = " ";
-  String lineFour = " ";
-
+  String lineOne = "EMPTY";
+  String lineTwo = "EMPTY";
+  String lineThree = "EMPTY";
+  String lineFour = "EMPTY";
+  int recieved = 0;
+  i = 0;
   while (command != "Z"){
     //receive command
-    command = comms[i]; //receive command input
+    //command = comms[i]; //receive command input
+
+    String message = receiveMessage();
+    while (recieved == 0){
+      if(message != ""){
+        command = message;
+        recieved = 1;
+        //sendMessage(message);
+      }
+    }
+    recieved = 0;
 
     Paint_Clear(BLACK); 
 
@@ -84,7 +99,7 @@ void loop() {
     Driver_Delay_ms(1000);
 
     //shift all valus down
-    if (command == " "){
+    if (command == "/n"){
       lineFour = lineThree;
       lineThree = lineTwo;
       lineTwo = lineOne;
