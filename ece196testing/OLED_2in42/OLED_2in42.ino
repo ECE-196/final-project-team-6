@@ -99,7 +99,7 @@ void loop() {
     Driver_Delay_ms(1000);
 
     //shift all valus down
-    if (command == "/n"){
+    if (command == " "){
       lineFour = lineThree;
       lineThree = lineTwo;
       lineTwo = lineOne;

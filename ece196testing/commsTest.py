@@ -12,7 +12,7 @@ from time import sleep
 if __name__ == "__main__":
 
     #comms connections
-    comms = Communication("/dev/cu.usbserial-0230F2AC", 115200)
+    comms = Communication("/dev/cu.usbmodem14101", 115200)
     comms.clear() # just in case any junk is in the pipes
       
     comms.send_message("Connected") #send connected message to confirm for both
