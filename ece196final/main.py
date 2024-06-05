@@ -12,7 +12,7 @@ import time # for timing purposes
 import joblib
 
 # try:
-model = joblib.load('Final_Model.joblib')
+#model = joblib.load('Final_Model.joblib')
 # except Exception as e:
     # print(f"Error loading model: {e}")
 # model.eval()
@@ -57,7 +57,15 @@ def main():
     i = 0
     
     while message == None:
-        test = "Arduino test case #1"
+        if (i==0):
+            send_message(ser, " ")
+            send_message(ser, " ")
+            send_message(ser, " ")
+            send_message(ser, "connected")
+            send_message(ser, " ")
+        time.sleep(1)
+        
+        test = "basic captioning test"
         sendable = test[i]
         
         image = cam.get_image() 
@@ -67,18 +75,18 @@ def main():
         # saving the image to SAME FOLDER as code
         pygame.image.save(image, "pic%s.jpg" % i)
         
-        prefix_name = "pic"
-        file_suffix = 0
+        #prefix_name = "pic"
+        #file_suffix = 0
         
-        file_name = str(prefix_name + 'file_suffix')
+        #file_name = str(prefix_name + 'file_suffix')
 
-        file_suffix += 1
+        #file_suffix += 1
 
-        sendable = model.predict(file_name + '.jpg')
+        #sendable = model.predict(file_name + '.jpg')
         print(sendable)
         
         send_message(ser, sendable)
-        time.sleep(1)
+        time.sleep(0.5)
     
         
         if i > len(test):

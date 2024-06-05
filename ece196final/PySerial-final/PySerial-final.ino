@@ -4,19 +4,16 @@ String lineTwo;
 String lineThree;
 String message;
 //String lineFour;
-//char test[26] = {"You really should learn ASL"};
-//char test[31] = {'Y', 'o', 'u', ' ', 'r', 'e', 'a', 'l', 'l', 'y', ' ', 
-//'s', 'h', 'o', 'u', 'l', 'd', ' ', 'l', 'e', 'a', 'r', 'n', ' ', 'A', 'S', 'L', ' ', ' ', ' ', ' '};
-char test[5] = {'A', 'B', 'C', 'D', 'E'};
+
 int i;
 
 void setup() {
-  //setupCommunication();
+  setupCommunication();
   setupDisplay();
   writeDisplay("No Connection", 0, true);
-  delay(10000);
-  writeDisplay("Connected", 0, true);
-  delay(3000);
+  //delay(10000);
+  //writeDisplay("Connected", 0, true);
+  //delay(3000);
   lineOne = "";
   lineTwo = "";
   lineThree = "";
@@ -25,8 +22,7 @@ void setup() {
   i=0;
 }
  void loop() {
-  message = test[i];
-  //String message = receiveMessage();
+  String message = receiveMessage();
   if(message != "") {
 
     if (message == " "){
